@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["toshi.alternative@gmail.com"]
   spec.summary       = %q{Play voice via PocketMiku}
   spec.description   = %q{Rubyコードから「ポケットミク」を使ってミクを調教するためのライブラリです。}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/toshia/pocket_miku"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
