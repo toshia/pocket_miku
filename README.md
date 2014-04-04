@@ -31,6 +31,7 @@ Or install it yourself as:
       sleep 0.12
       ぼ(82,127)
       sleep 0.12
+	  stop
 	end
 `
 
