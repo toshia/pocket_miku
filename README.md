@@ -24,16 +24,16 @@ Or install it yourself as:
 『ポケット・ミク』をUSBケーブルで接続してUSBモードで起動すると、 /dev/ 以下にmidiなんとかというデバイスファイルが出てくると思います。
 開発環境では /dev/midi2 だったので、これをPocketMikuの引数に渡します。
 
-`
-    require 'pocket_miku'
-	PocketMiku.new('/dev/midi2') do
-	  ふぁ(75,127)
-      sleep 0.12
-      ぼ(82,127)
-      sleep 0.12
-	  stop
-	end
-`
+```ruby
+require 'pocket_miku'
+PocketMiku.new('/dev/midi2') do
+  ふぁ(75,127)
+  sleep 0.12
+  ぼ(82,127)
+  sleep 0.12
+  stop
+end
+```
 
 「ふぁ」「ぼ」等はメソッドで、この音を発音します。引数は「あ(音程, 強さ)」です。全ての発音は、ポケット・ミク付属の『ユーザーズマニュアル』の裏に掲載されている『ポケット・ミク　デフォルト文字テーブル』に書いてある文字が全て使用できます。
 なお、「ん」は「N\」のエイリアスです。ほかの「ん」を使用する時は、同備考欄の文字（ダブルクォートは不要）を指定してください。
