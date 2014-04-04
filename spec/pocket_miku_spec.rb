@@ -48,7 +48,7 @@ describe PocketMiku, "pocket miku" do
   end
 
   it "should play DSL Context" do
-    @pocketmiku.sing { あ(60, 100) }
+    @pocketmiku.sing {あ(60, 100) }
     expect(@stream_body.unpack('C*')).to eq([0xF0, 0x43, 0x79, 0x09, 0x11, 0x0A, 0, 0, 0xF7, 0x90, 60, 100])
   end
 

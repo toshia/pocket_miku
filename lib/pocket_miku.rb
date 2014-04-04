@@ -57,10 +57,10 @@ class PocketMiku
   # [sound] Integer|Symbol 文字テーブルの文字コード(Integer)か文字(Symbol)
   # ==== Return
   # self
-  def set(key: nil, velocity: nil, sound: nil)
-    @key = byte_check(key, "invalid key `%d'".freeze) if key
-    @velocity = byte_check(velocity, "invalid velocity `%d'".freeze) if velocity
-    self.sound = sound if sound
+  def set(options)
+    @key = byte_check(options[:key], "invalid key `%d'".freeze) if options[:key]
+    @velocity = byte_check(options[:velocity], "invalid velocity `%d'".freeze) if options[:velocity]
+    self.sound = options[:sound] if options[:sound]
     self
   end
 
