@@ -2,6 +2,7 @@
 require "pocket_miku/version"
 require "pocket_miku/literal"
 require "pocket_miku/exception"
+require "pocket_miku/packet_factory"
 require "pocket_miku/base"
 require "pocket_miku/chartable"
 require "pocket_miku/note"

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 module PocketMiku
-  class Score
+  class Score < PocketMiku::Base
     include Enumerable
 
     attr_reader :default

@@ -20,7 +20,7 @@ module PocketMiku
     end
 
     def to_s
-      pack(to_a)
+      PocketMiku::PacketFactory.pack(to_a)
     end
 
     def to_a
