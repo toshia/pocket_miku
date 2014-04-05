@@ -58,8 +58,8 @@ end
 
 ```ruby
 PocketMiku.sing '/dev/midi2' do
-  f85 = PocketMiku::Note8 + PocketMiku::Note16 # 付点8分音符
-  f16 = PocketMiku::Note16                     # 16分音符
+  f8 = PocketMiku::Note8
+  f16 = PocketMiku::Note16
 
   ま key: 79, length: f8; っ f16; る key: 79, length: f16
 end
@@ -71,8 +71,8 @@ end
 
 ```ruby
 PocketMiku.sing '/dev/midi2' do
-  f85 = PocketMiku::Note8 + PocketMiku::Note16 # 付点8分音符
-  f16 = PocketMiku::Note16                     # 16分音符
+  f8 = PocketMiku::Note8
+  f16 = PocketMiku::Note16
 
   ま key: 79, length: f8; っ f16; る key: 79, length: f16, velocity: 80
 end
@@ -98,8 +98,8 @@ end
 ```ruby
 PocketMiku.sing '/dev/midi2' do
   tempo 80
-  f85 = PocketMiku::Note8 + PocketMiku::Note16 # 付点8分音符
-  f16 = PocketMiku::Note16                     # 16分音符
+  f8 = PocketMiku::Note8
+  f16 = PocketMiku::Note16
 
   ま key: 79, length: f8; っ f16; る key: 79, length: f16, velocity: 80
   た key: 79, length: f8; っ f16; け key: 79, length: f16, velocity: 80
