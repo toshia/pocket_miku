@@ -51,11 +51,16 @@ module PocketMiku
     #   packetの中に、1byte(0..255)に収まらない数値がある場合
     def play(score)
       score.map{|note|[note, note.to_s.freeze]}.each do |note, packet|
-        @io << packet
-        @io.flush
-        sleep Rational(60.to_f, score.tempo) * Rational(note.length.to_f, Note4)
-        stop 0, note.key
-        @io.flush
+        case note
+        when RestNote
+          sleep Rational(60.to_f, score.tempo) * Rational(note.length.to_f, Note4)
+        when Note
+          @io << packet
+          @io.flush
+          sleep Rational(60.to_f, score.tempo) * Rational(note.length.to_f, Note4)
+          stop 0, note.key
+          @io.flush
+        end
       end
     end
     alias +@ play

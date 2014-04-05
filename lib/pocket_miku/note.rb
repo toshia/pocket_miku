@@ -110,4 +110,14 @@ module PocketMiku
       @length = new
     end
   end
+
+  class RestNote < Note
+    def initialize(length)
+      super(sound:0, key:0, velocity:0, pitchbend:0, length: length)
+    end
+
+    def to_a
+      []
+    end
+  end
 end

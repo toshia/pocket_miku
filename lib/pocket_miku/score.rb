@@ -79,6 +79,10 @@ module PocketMiku
           end
     end
 
+    def っ(length)
+      add PocketMiku::RestNote.new(length)
+    end
+
     def method_missing(method, *args)
       case method
       when -> _ {CharTable.include? _}
