@@ -12,4 +12,12 @@ require 'stringio'
 require 'rational'
 
 module PocketMiku
+  extend self
+
+  # ポケットミクに歌わせるためのショートカットメソッド
+  # ==== Args
+  # [device] String|IO デバイスファイルの場所
+  def sing(device)
+    PocketMiku::Device.new(device, &Proc.new)
+  end
 end
