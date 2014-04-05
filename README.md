@@ -26,21 +26,97 @@ Or install it yourself as:
 
 ```ruby
 require 'pocket_miku'
-PocketMiku.new('/dev/midi2') do
-  ふぁ(75,127)
-  sleep 0.12
-  ぼ(82,127)
-  sleep 0.12
-  stop
+PocketMiku.sing '/dev/midi2' do
+  tempo 240
+  ふぁ 75; ぼ 82
 end
 ```
 
-「ふぁ」「ぼ」等はメソッドで、この音を発音します。引数は「あ(音程, 強さ)」です。全ての発音は、ポケット・ミク付属の『ユーザーズマニュアル』の裏に掲載されている『ポケット・ミク　デフォルト文字テーブル』に書いてある文字が全て使用できます。
+*ふぁ (音階)* などと書くと、その高さで「ふぁ」と発音します。ポケット・ミク付属の『ユーザーズマニュアル』の裏に掲載されている『ポケット・ミク　デフォルト文字テーブル』に書いてある文字が全て使用できます。
 なお、「ん」は「N\」のエイリアスです。ほかの「ん」を使用する時は、同備考欄の文字（ダブルクォートは不要）を指定してください。
+### 休符
+「っ」です。引数は数値一つで、「長さ」（後述）です。
+
+### ノートの追加パラメータ
+音毎に追加パラメータを設定できます。追加パラメータを利用する場合、例えば *あ 60* を *あ key:60* と書き換え、
+その後に *, 追加パラメータ名: 値* と書きます。
+
+#### 長さ
+音の長さを指定するには、 *length: [長さ]* と指定します。
+長さは、32分音符が1で、長さが倍になると倍になります。又、以下の定数も用意されています。
+
+|定数|意味|
+|:-:|:-|
+|PocketMiku::Note1|全音符|
+|PocketMiku::Note2|2分音符|
+|PocketMiku::Note4|4分音符|
+|PocketMiku::Note8|8分音符|
+|PocketMiku::Note16|16分音符|
+|PocketMiku::Note32|32分音符|
+
+以下のサンプルでは見やすさのために変数を使ってます。
+
+```ruby
+PocketMiku.sing '/dev/midi2' do
+  f85 = PocketMiku::Note8 + PocketMiku::Note16 # 付点8分音符
+  f16 = PocketMiku::Note16                     # 16分音符
+
+  ま key: 79, length: f8; っ f16; る key: 79, length: f16
+end
+```
+
+#### ベロシティ
+音の強さは、 *velocity: [0..127]* のように指定します。0から127まで、数字が大きいほうが音が大きくなります。
+さっきのサンプルにベロシティを追加してみました。
+
+```ruby
+PocketMiku.sing '/dev/midi2' do
+  f85 = PocketMiku::Note8 + PocketMiku::Note16 # 付点8分音符
+  f16 = PocketMiku::Note16                     # 16分音符
+
+  ま key: 79, length: f8; っ f16; る key: 79, length: f16, velocity: 80
+end
+```
+
+### 楽譜パラメータ
+
+#### デフォルト値
+*default.velocity = 100* などと書くと、これ以降の音符のデフォルト値が設定できます。
+
+|定義|意味|
+|:-|:-|
+|default.key = |音の高さ|
+|default.length|長さ|
+|default.velocity|ベロシティ|
+
+#### テンポ
+*tempo 100* などと書くと、これ以降のテンポを変更できます。曲のテンポを設定する時は最初に書いてください。
+テンポの数字は、1分間に4分音符がいくつ入るか、です。
+
+先ほどのサンプルにテンポをつけてみました
+
+```ruby
+PocketMiku.sing '/dev/midi2' do
+  tempo 80
+  f85 = PocketMiku::Note8 + PocketMiku::Note16 # 付点8分音符
+  f16 = PocketMiku::Note16                     # 16分音符
+
+  ま key: 79, length: f8; っ f16; る key: 79, length: f16, velocity: 80
+  た key: 79, length: f8; っ f16; け key: 79, length: f16, velocity: 80
+  え key: 79, length: f8; っ f16; べ key: 77, length: f16, velocity: 80
+  す key: 79, length: f8; っ f16; に key: 77, length: f16, velocity: 80
+  お key: 79, length: f8; っ f16; し key: 79, length: f16, velocity: 80
+  お key: 74, length: f8; っ f16; い key: 74, length: f16, velocity: 80
+  け key: 74, length: f8 * 1.5
+  っ f16 + PocketMiku::Note4;
+end
+```
 
 ## そのうち
 
-- 音の同期をsleepとかじゃなくてもっといい感じにしたい
+- 音の同期処理本当にどうしよう
+- ピッチベンド実装したい
+- 発音中に音のパラメータを操作したい(だんだん高く、だんだん弱く等)
 
 ## Contributing
 
