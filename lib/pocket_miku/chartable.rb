@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class PocketMiku
+module PocketMiku
   CharTable = {
     あ: 0,
     い: 1,

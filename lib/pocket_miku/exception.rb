@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class PocketMiku
+module PocketMiku
   # PocketMikuが定義する例外の基底クラス
   class Exception < ::RuntimeError; end
 

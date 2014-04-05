@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class PocketMiku
+module PocketMiku
   class Note < PocketMiku::Base
     attr_reader :sound, :key, :velocity, :pitchbend, :length
 
